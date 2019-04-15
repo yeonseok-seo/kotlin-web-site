@@ -12,6 +12,10 @@ issue: EVAN-5132
 Kotlin/Native provides bi-directional interoperability with Objective-C/Swift. 
 Objective-C frameworks and libraries can be used in Kotlin code.
 Kotlin modules can be used in Swift/Objective-C code too.
+
+
+
+
 Besides that, Kotlin/Native has
 [C Interop](https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md).
 There is also the [Kotlin/Native as a Dynamic Library](dynamic-libraries.html)
@@ -103,7 +107,7 @@ in the table:
 {:.zebra}
  
 Let's run the `linkNative` Gradle task to build the library 
-[in IDE](basic-kotlin-native-app.html#run-in-ide) 
+[in the IDE](basic-kotlin-native-app.html#run-in-ide) 
 or by calling the following console command:
 [[include pages-includes/docs/tutorials/native/linkNative.md]]
 
@@ -336,7 +340,7 @@ int main(int argc, const char * argv[]) {
 ```
 </div>
 
-We call Kotlin classes directly from Objective-C code. Kotlin `object` has the class method 
+We call Kotlin classes directly from Objective-C code. A Kotlin `object` has the class method 
 function `object`, which allows us to get the only instance of the object and to call 
 `Object` methods on it. 
 The widespread pattern is used to create an instance of the `Clazz` class. We call
@@ -379,7 +383,7 @@ if (ret != nil) {
 
 The Kotlin code is turned into very similar looking
 code in Swift. There are some small differences, though. In Kotlin any `object` has
-the only one instance. Kotlin `object Object` now has a
+only one instance. Kotlin `object Object` now has a
 constructor in Swift, and we use the `Object()` syntax to access the only instance of it.
 The instance is always the same in Swift, so that 
 `Object() === Object()` is true. 
@@ -400,7 +404,7 @@ target platform.
 
 First, we need to include the framework in the `General` section of the *target*
 configuration. There is the `Linked Frameworks and Libraries` section to include
-our framework. That will make Xcode look at our framework and resolve imports both
+our framework. This will make Xcode look at our framework and resolve imports both
 from Objective-C and Swift.
 
 The second step is to configure the framework search path of the produced
@@ -409,14 +413,14 @@ The binary uses the path to look for the required frameworks. We do not recommen
 installing additional frameworks to the OS if it is not needed. We should understand the layout
 of our future application, for example, 
 we may have the `Frameworks` folder under the application bundle with all the frameworks we use. 
-The `@rpath` parameter can be configured in the Xcode. We need to open
-the *project* configuration and find the `Runpath Search Paths` section. There we specify
+The `@rpath` parameter can be configured in Xcode. We need to open
+the *project* configuration and find the `Runpath Search Paths` section. Here we specify
 the relative path to the compiled framework.
 
 ## Xcode for iOS Targets
 
 First, we need to include the compiled framework into the Xcode project. For
-that we add the framework to the `Embedded Binaries` block of the `General` section of
+this we add the framework to the `Embedded Binaries` block of the `General` section of
 the *target* configuration page. 
 
 The second step is to then include the framework path into the `Framework Search Paths` block
